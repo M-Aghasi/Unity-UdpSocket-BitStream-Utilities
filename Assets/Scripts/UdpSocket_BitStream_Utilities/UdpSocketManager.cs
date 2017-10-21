@@ -7,8 +7,8 @@ using System.Net.Sockets;
 using System.Threading;
 
 /**
- * This class is wraps a C# UdpClient, creates to threads for send & receive
- * and provides mothods for sending, receiving and closing threads.
+ * This class wraps a C# UdpClient, creates two threads for send & receive
+ * and provides methods for sending, receiving data and closing threads.
  */
 public class UdpSocketManager {
 
@@ -34,7 +34,7 @@ public class UdpSocketManager {
     private readonly string _serverIp;
     private readonly int _serverPort;
 
-    // this field always used in _udpClientLock blocks, so it doesn't need a seperate lock
+    // this field is always used in _udpClientLock blocks, so it doesn't need a seperate lock
     private IAsyncResult _currentAsyncResult = null;
 
 
@@ -48,7 +48,7 @@ public class UdpSocketManager {
 
 
     /**
-     * Resets SocketManager stat to default and starts Send & Receive threads
+     * Resets SocketManager state to default and starts Send & Receive threads
      */
     public IEnumerator initSocket() {
 
@@ -61,7 +61,7 @@ public class UdpSocketManager {
             }
         }
 
-        // reset SocketManager stat
+        // reset SocketManager state
         _sendQueue.Clear();
         _receiveQueue.Clear();
         _udpClient = null;

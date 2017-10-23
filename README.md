@@ -2,6 +2,8 @@
 This project provides source codes and a UnityPackage for using c# udp sockets and bitwise memory streams.
 
 ## Udp sockets
+> *For not experiencing .NET compatibility issues after exporting your project to other platforms, change Api compatibility LEVEL to .NET 2.0:  File -> Build settings -> Player Settings -> Other settings -> Optimization -> Api compatibility LEVEL = .NET 2.0*
+
 Although Unity provides a networking api and protocol for socket programming and multiplayer game implementation, sometimes you need to establish your own bare sockets and communication protocol.
 
 As at the time i didn't find a ready to use, clear and multithread example of c# sockets usage in unity i started to write a simple one for udp communications.

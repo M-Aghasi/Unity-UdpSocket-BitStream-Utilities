@@ -33,6 +33,7 @@ public class UdpSocketManager {
 
     private readonly string _serverIp;
     private readonly int _serverPort;
+    private readonly int _clientPort;
 
     // this field is always used in _udpClientLock blocks, so it doesn't need a seperate lock
     private IAsyncResult _currentAsyncResult = null;
@@ -44,6 +45,14 @@ public class UdpSocketManager {
     public UdpSocketManager(string serverIp, int serverPort) {
         _serverIp = serverIp;
         _serverPort = serverPort;
+        _clientPort = 0;
+    }
+
+
+    public UdpSocketManager(string serverIp, int serverPort, int clientPort) {
+        _serverIp = serverIp;
+        _serverPort = serverPort;
+        _clientPort = clientPort;
     }
 
 
@@ -179,7 +188,7 @@ public class UdpSocketManager {
             _udpClient.ExclusiveAddressUse = false;
             _udpClient.Client.SetSocketOption(
                 SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            IPEndPoint localEp = new IPEndPoint(IPAddress.Any, 0);
+            IPEndPoint localEp = new IPEndPoint(IPAddress.Any, _clientPort);
             _udpClient.Client.Bind(localEp);
             var s = new UdpState(localEp, _udpClient);
             _currentAsyncResult = _udpClient.BeginReceive(new AsyncCallback(ReceiveCallback), s);

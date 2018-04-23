@@ -10,6 +10,7 @@ As at the time i didn't find a ready to use, clear and multithread example of c#
 
 There is a *UdpSocketManager* class in this package which is responsible for udp communications and has below methods:
 * **UdpSocketManager(string serverIp, int serverPort)** receives serverIp & serverPort for further use
+* **UdpSocketManager(string serverIp, int serverPort, int clientPort)** receives serverIp, serverPort & clientPort for further use
 * **IEnumerator initSocket()** Resets UdpSocketManager state to default and starts Send & Receive threads
 * **bool isInitializationCompleted()** Returns true if listen port has bound successfully
 * **int getListenPort()** Returns current client UDP listen port
